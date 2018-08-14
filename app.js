@@ -26,7 +26,6 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var chat = require('./routes/chat');
 
 
 
@@ -102,7 +101,6 @@ app.get('*', function(req, res, next){
 
 app.use('/', index);
 app.use('/users', users);
-app.use('chat', chat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
