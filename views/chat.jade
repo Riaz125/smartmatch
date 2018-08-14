@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	h3 Online Users
+		ul#users.list-group
+	.col-md-8
+		form#messageForm
+			.form-group
+				#chat.chat
+				label Enter Message
+				textarea#message.form-control
+				br
+				input.btn.btn-primary(type='submit', value='send message')
+
+			script.
+				$(function(){
+					var socket = io.connect();
+					var $messageForm = $('#messageForm');
+					var $message = $('#message');
+					var $chat = $('#chat');
+
+					$messageForm.submit(function(e){
+						e.preventDefault();
+						socket.emit('send message', $message.val());
+						$message.val('');
+					});
+
+					socket.on('new message', function(data){
+						$chat.append('<div class="well">'+data.msg+'</div>');
+					});
+				});

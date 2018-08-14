@@ -1,0 +1,32 @@
+extends layout
+
+block content
+	h1 Profile
+	p Please enter the information that we will use to match you with a partner.
+	if errors
+		each error, i in errors
+			div.alert.alert-danger #{error.msg}
+		
+	form(method='post', action='/users/profile', enctype='multipart/form-data')
+		.form-group
+			label What is your age?
+			input.form-control(name='age', type='number', min='18', max='120', placeholder='Enter Age')
+		.form-group
+			label What is your height in centimeters?
+			input.form-control(name='height', type='number', min='31', max='305', placeholder='Enter Height')
+		.form-group
+			label What would best describe your political views?
+			select.form-control(name = 'politics', type='text', placeholder='Select from the drop down menu')
+				option
+				option Liberal
+				option Conservative
+				option Libertarian
+				option Moderate
+		.form-group
+			label What would best describe as introverted or extraverted?
+			select.form-control(name = 'social', type='text', placeholder='Select from the drop down menu')
+				option
+				option Introverted
+				option Extraverted
+				option Somewhere in the Middle
+		input.btn.btn-primary(type='submit', name='submit', value='Update Profile')

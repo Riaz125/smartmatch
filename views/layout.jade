@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+  head
+    title Welcome
+    link(href='/stylesheets/bootstrap.css', rel='stylesheet')
+    link(href='/stylesheets/style.css', rel='stylesheet')
+    script(src='/socket.io/socket.io.js')
+    script(src='http://code.jquery.com/jquery-latest.min.js')
+  body
+    .navbar.navbar-default(role='navigation')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.sr-only Toggle navigation
+            span.iconbar
+            span.iconbar
+            span.iconbar
+          a.navbar-brand(href='#') Nodeauth
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            if user
+             li(class=(title == 'Members' ? 'active' : ''))
+               a(href='/') Members
+             li(class=(title == 'Profile' ? 'active' : ''))
+               a(href='/users/profile') Profile
+             li(class=(title == 'Chat' ? 'active' : ''))
+                 a(href='/users/chat') Chat
+            if !user
+             li(class=(title == 'Register' ? 'active' : ''))
+               a(href='/users/register') Register
+             li(class=(title == 'Login' ? 'active' : ''))
+               a(href='/users/login') Login
+          ul.nav.navbar-nav.navbar-right
+           if user
+            li
+              a(href='/users/logout') Logout
+    .container
+     != messages()
+     block content
+
+
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    script(src='javascripts/bootstrap.js')

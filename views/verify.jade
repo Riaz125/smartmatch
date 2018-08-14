@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h2.page-header Verify Email
+	p Please enter the code emailed to your in order to continue.
+	form(method='post', action='/users/verify')
+		.form-group
+			label Secret Token
+			input.form-control(name='secretToken', id='secretToken', type='text', placeholder='Secret Token')
+		input.btn.btn-primary(type='submit', name='submit', value='Verify')
